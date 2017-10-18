@@ -1,12 +1,11 @@
-FROM gliderlabs/alpine
+FROM ubuntu:latest
 MAINTAINER  maarten Wiese <maarten.wiese@microsoft.com>
 
 # Install nginx, make it work with docker, and get it ready to run
-RUN apk-install nginx && echo "daemon off;" >> /etc/nginx/nginx.conf \
- && mkdir -p /tmp/nginx/client-body
+RUN apt-get update && apt-get upgrade && apt-get install nginx -y && echo "daemon off;" >> /etc/nginx/nginx.conf
 
-# Bring in the html and azure image
-COPY html /usr/html
+# Bring in the html and cloud image
+COPY html /var/www/html
 COPY start_nginx.sh /
 
 # Expose port 80
