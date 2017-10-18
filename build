@@ -1,0 +1,13 @@
+#!/bin/bash
+imagename="docker-nginx-demo"
+docker_registry="my-internal-registry:5000"
+docker_namespace="dontrebootme"
+if [ $# -eq 0 ];then
+ tagver="latest"
+else
+ tagver="${1}"
+fi
+echo "Now building: ${imagename}:${tagver}"
+docker build --rm=true --no-cache=true --pull=true -t ${imagename}:${tagver} .
+docker tag ${imagename}:${tagver} ${docker_registry}/${docker_namespace}/${imagename}:${tagver}
+docker push ${docker_registry}/${docker_namespace}/${imagename}:${tagver}
