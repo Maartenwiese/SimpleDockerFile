@@ -1,7 +1,7 @@
 #!/bin/bash
-imagename="docker-nginx-demo"
-docker_registry="my-internal-registry:5000"
-docker_namespace="dontrebootme"
+imagename="dockersimpledemo"
+docker_registry="my-acr"
+docker_namespace="dockerdemo"
 if [ $# -eq 0 ];then
  tagver="latest"
 else
